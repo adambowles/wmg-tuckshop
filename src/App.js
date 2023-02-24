@@ -5,9 +5,9 @@ function Main() {
   return (
     <App theme="ios">
       <Page>
-        <Navbar title="My App" />
+        <Navbar title="WMG Tuckshop" />
 
-        <Block strong>Hello world!</Block>
+        <Block strong>Bowles</Block>
       </Page>
     </App>
   );
