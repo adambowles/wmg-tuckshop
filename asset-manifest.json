@@ -1,17 +1,16 @@
 {
   "files": {
-    "main.css": "/wmg-tuckshop/static/css/main.073c9b0a.css",
-    "main.js": "/wmg-tuckshop/static/js/main.175847ed.js",
+    "main.css": "/wmg-tuckshop/static/css/main.bbe2b6a1.css",
+    "main.js": "/wmg-tuckshop/static/js/main.523174c2.js",
     "static/js/787.97683dbb.chunk.js": "/wmg-tuckshop/static/js/787.97683dbb.chunk.js",
     "service-worker.js": "/wmg-tuckshop/service-worker.js",
-    "static/media/logo.svg": "/wmg-tuckshop/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
     "index.html": "/wmg-tuckshop/index.html",
-    "main.073c9b0a.css.map": "/wmg-tuckshop/static/css/main.073c9b0a.css.map",
-    "main.175847ed.js.map": "/wmg-tuckshop/static/js/main.175847ed.js.map",
+    "main.bbe2b6a1.css.map": "/wmg-tuckshop/static/css/main.bbe2b6a1.css.map",
+    "main.523174c2.js.map": "/wmg-tuckshop/static/js/main.523174c2.js.map",
     "787.97683dbb.chunk.js.map": "/wmg-tuckshop/static/js/787.97683dbb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.175847ed.js"
+    "static/css/main.bbe2b6a1.css",
+    "static/js/main.523174c2.js"
   ]
 }
