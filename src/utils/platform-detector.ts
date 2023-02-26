@@ -6,15 +6,9 @@
  *
  * @returns {String}
  */
-const getMobileOperatingSystem = (): "material" | "ios" => {
-  const userAgent = navigator.userAgent;
-
-  if (/android/i.test(userAgent)) {
-    return "material";
-  }
-
+const getMobileOperatingSystem = (): "ios" | "material" => {
   // iOS detection from: http://stackoverflow.com/a/9039885/177710
-  if (/iPad|iPhone|iPod/.test(userAgent)) {
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     return "ios";
   }
 
