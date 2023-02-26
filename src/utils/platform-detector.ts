@@ -6,13 +6,13 @@
  *
  * @returns {String}
  */
-const getMobileOperatingSystem = (): "ios" | "material" => {
+const getMobileOperatingSystem = (): 'ios' | 'material' => {
   // iOS detection from: http://stackoverflow.com/a/9039885/177710
   if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    return "ios";
+    return 'ios';
   }
 
-  return "material";
+  return 'material';
 };
 
 export default getMobileOperatingSystem;

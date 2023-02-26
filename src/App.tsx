@@ -1,15 +1,15 @@
-import React from "react";
-import { App, Page, Navbar, Block } from "konsta/react";
+import React from 'react';
+import { App, Page, Navbar, Block } from 'konsta/react';
 
-import "./App.css";
+import './App.css';
 
-import asd from "./utils/platform-detector";
+import platformDetector from './utils/platform-detector';
 
 function Main() {
-  console.log(asd());
+  const theme = platformDetector();
 
   return (
-    <App theme={asd()}>
+    <App theme={theme}>
       <Page>
         <Navbar title="WMG Tuckshop" />
 
