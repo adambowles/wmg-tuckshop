@@ -3,7 +3,6 @@ import {
   App as KonstaApp,
   Page,
   Navbar,
-  Block,
   BlockTitle,
   List,
   ListItem,
@@ -37,7 +36,7 @@ function App() {
     <KonstaApp safeAreas theme={theme}>
       <Page>
         <Navbar
-          title="WMG Tuckshop"
+          title="WMG T uckshop"
           right={
             <Link navbar className="space-x-2">
               <FontAwesomeIcon icon={faCartShopping} />
