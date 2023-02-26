@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wmg-tuckshop/static/css/main.ece0c61b.css",
-    "main.js": "/wmg-tuckshop/static/js/main.721337a0.js",
+    "main.css": "/wmg-tuckshop/static/css/main.ee909b3e.css",
+    "main.js": "/wmg-tuckshop/static/js/main.168d5516.js",
     "static/js/787.97683dbb.chunk.js": "/wmg-tuckshop/static/js/787.97683dbb.chunk.js",
     "static/media/costa-latte.jpg": "/wmg-tuckshop/static/media/costa-latte.5c0e45bfe8881d524fe0.jpg",
     "static/media/fanta.jpg": "/wmg-tuckshop/static/media/fanta.2d982334b92eb755e901.jpg",
@@ -10,12 +10,12 @@
     "static/media/costa-caramel-latte.jpg": "/wmg-tuckshop/static/media/costa-caramel-latte.ebcd63e3b41b354d0a88.jpg",
     "static/media/mars.jpg": "/wmg-tuckshop/static/media/mars.afa6dbdd5b23677b811d.jpg",
     "index.html": "/wmg-tuckshop/index.html",
-    "main.ece0c61b.css.map": "/wmg-tuckshop/static/css/main.ece0c61b.css.map",
-    "main.721337a0.js.map": "/wmg-tuckshop/static/js/main.721337a0.js.map",
+    "main.ee909b3e.css.map": "/wmg-tuckshop/static/css/main.ee909b3e.css.map",
+    "main.168d5516.js.map": "/wmg-tuckshop/static/js/main.168d5516.js.map",
     "787.97683dbb.chunk.js.map": "/wmg-tuckshop/static/js/787.97683dbb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ece0c61b.css",
-    "static/js/main.721337a0.js"
+    "static/css/main.ee909b3e.css",
+    "static/js/main.168d5516.js"
   ]
 }
