@@ -1,18 +1,19 @@
-/**
- * Determine the mobile operating system.
- * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
- *
- * https://stackoverflow.com/a/21742107
- *
- * @returns {String}
- */
-const getMobileOperatingSystem = (): 'ios' | 'material' => {
-  // iOS detection from: http://stackoverflow.com/a/9039885/177710
-  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    return 'ios';
+const getOperatingSystem = (): 'ios' | 'material' => {
+  if( [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  ) {
+    return "ios";
   }
 
   return 'material';
 };
 
-export default getMobileOperatingSystem;
+export default getOperatingSystem;
