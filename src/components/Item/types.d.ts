@@ -1,39 +1,17 @@
 export interface Props {
-  /**
-   * Name of item
-   */
   name: string;
-  /**
-   * Stock photo
-   */
+  category: string;
   image: string;
-  /**
-   * Remaining stock of this item
-   */
   stockRemaining: number;
-  /**
-   * Cost of this item in pence
-   */
-  cost: number;
-  /**
-   * Whether this item is in the basket for checkout
-   * 
-   * @default false
-   */
+  cost: number; // in pence
   inBasket?: boolean;
 }
 
 export interface State {
-  /**
-   * Number of item added to basket
-   * 
-   * @default 1
-   */
   quantitySelected: number;
 }
 
 export default {
   Props,
-  State
-}
-
+  State,
+};
