@@ -69,8 +69,20 @@ function App() {
         </BlockTitle>
 
         <List>
-          <Item name="Fanta" image={fanta} cost={50} stockRemaining={3} />
-          <Item name="Bueno" image={bueno} cost={50} stockRemaining={3} />
+          <Item
+            name="Fanta"
+            category="drinks"
+            image={fanta}
+            cost={50}
+            stockRemaining={3}
+          />
+          <Item
+            name="Bueno"
+            category="chocolate"
+            image={bueno}
+            cost={50}
+            stockRemaining={3}
+          />
         </List>
 
         <BlockTitle>
@@ -83,12 +95,14 @@ function App() {
         <List>
           <Item
             name="Costa Latte"
+            category="coffee"
             image={costaLatte}
             cost={100}
             stockRemaining={3}
           />
           <Item
             name="Costa Caramel Latte"
+            category="coffee"
             image={costaCaramelLatte}
             cost={100}
             stockRemaining={5}
@@ -103,8 +117,20 @@ function App() {
         </BlockTitle>
 
         <List>
-          <Item name="Mars" image={mars} cost={50} stockRemaining={6} />
-          <Item name="Bueno" image={bueno} cost={50} stockRemaining={1} />
+          <Item
+            name="Mars"
+            category="chocolate"
+            image={mars}
+            cost={50}
+            stockRemaining={6}
+          />
+          <Item
+            name="Bueno"
+            category="chocolate"
+            image={bueno}
+            cost={50}
+            stockRemaining={1}
+          />
         </List>
 
         <BlockTitle>
@@ -117,6 +143,7 @@ function App() {
         <List>
           <Item
             name="Mars"
+            category="chocolate"
             image={mars}
             cost={50}
             stockRemaining={1}
@@ -124,6 +151,7 @@ function App() {
           />
           <Item
             name="Bueno"
+            category="chocolate"
             image={bueno}
             cost={50}
             stockRemaining={10}
