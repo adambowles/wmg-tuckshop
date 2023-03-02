@@ -20,7 +20,7 @@ class Item extends React.Component<Props, State> {
 
   decrementQuantitySelected = () => {
     if (this.state.quantitySelected === 1) {
-      // remove from basket
+      //TODO remove from basket
     } else {
       this.setState({ quantitySelected: this.state.quantitySelected - 1 });
     }
