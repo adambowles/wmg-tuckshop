@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-require('dotenv').config();
-
 import './index.css';
 import App from 'components/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
