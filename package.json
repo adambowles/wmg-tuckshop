@@ -1,7 +1,7 @@
 {
   "name": "wmg-tuckshop",
-  "version": "0.1.0",
-  "homepage": "https://adambowles.github.io/wmg-tuckshop",
+  "version": "1.0.0",
+  "homepage": "https://3-wmg-tuck.shop/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
