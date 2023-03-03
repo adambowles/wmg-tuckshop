@@ -34,8 +34,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
+      - name: Install
+        run: npm i 
+        shell: bash
+
+      - name: Test
+        run: npm test
+        shell: bash
+
       - name: Compile
-        run: npm i && npm run build
+        run: npm run build
         shell: bash
 
       - name: Upload artifact
