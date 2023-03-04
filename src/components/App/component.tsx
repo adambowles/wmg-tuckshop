@@ -31,15 +31,60 @@ import { User } from './types';
 
 import './style.css';
 
-const App = () => {
-  const [users, setUsers] = useState([] as Array<User>);
+const stockExample = {
+  favourites: [
+    {
+      name: 'Fanta',
+      image: fanta,
+      stockRemaining: 10,
+      cost: 100,
+    },
+    {
+      name: 'Bueno',
+      image: bueno,
+      stockRemaining: 10,
+      cost: 50,
+    },
+  ],
+  coffee: [
+    {
+      name: 'Costa Latte',
+      image: costaLatte,
+      stockRemaining: 20,
+      cost: 140,
+    },
+    {
+      name: 'Costa Caramel Latte',
+      image: costaCaramelLatte,
+      stockRemaining: 10,
+      cost: 140,
+    },
+  ],
+  chocolate: [
+    {
+      name: 'Mars',
+      image: mars,
+      stockRemaining: 30,
+      cost: 50,
+    },
+    {
+      name: 'Bueno',
+      image: bueno,
+      stockRemaining: 10,
+      cost: 50,
+    },
+  ],
+};
+
+const App = ({ stock = stockExample }) => {
+  const [users, setUsers] = useState([] as User[]);
   const [theme] = useState(platformDetector());
 
   useEffect(() => {
     //TODO put this in a redux store
     fetch(`${process.env.REACT_APP_API_URL}/users`).then((response) => {
       response.json().then((response) => {
-        const data = response.data as Array<any>;
+        const data = response.data as any[];
 
         let users = data
           .map((user) => {
@@ -50,7 +95,11 @@ const App = () => {
             };
           })
           .sort((a: User, b: User) => {
-            return Number(a.number) - Number(b.number);
+            if (!isNaN(Number(a.number)) && !isNaN(Number(b.number))) {
+              return Number(a.number) - Number(b.number);
+            }
+
+            return 0;
           });
 
         setUsers(users);
@@ -62,7 +111,7 @@ const App = () => {
     <KonstaApp safeAreas theme={theme}>
       <Page className="pb-10">
         <Navbar
-          title="3 AAC WMG Tuckshop"
+          title={process.env.REACT_APP_TITLE}
           right={
             <Link navbar className="space-x-2">
               <FontAwesomeIcon icon={faCartShopping} />
@@ -95,20 +144,9 @@ const App = () => {
         </BlockTitle>
 
         <List>
-          <Item
-            name="Fanta"
-            category="drinks"
-            image={fanta}
-            cost={50}
-            stockRemaining={3}
-          />
-          <Item
-            name="Bueno"
-            category="chocolate"
-            image={bueno}
-            cost={50}
-            stockRemaining={3}
-          />
+          {stock.favourites.map((item) => (
+            <Item {...item} key={item.name} />
+          ))}
         </List>
 
         <BlockTitle>
@@ -119,20 +157,9 @@ const App = () => {
         </BlockTitle>
 
         <List>
-          <Item
-            name="Costa Latte"
-            category="coffee"
-            image={costaLatte}
-            cost={100}
-            stockRemaining={3}
-          />
-          <Item
-            name="Costa Caramel Latte"
-            category="coffee"
-            image={costaCaramelLatte}
-            cost={100}
-            stockRemaining={5}
-          />
+          {stock.coffee.map((item) => (
+            <Item {...item} key={item.name} />
+          ))}
         </List>
 
         <BlockTitle>
@@ -143,20 +170,9 @@ const App = () => {
         </BlockTitle>
 
         <List>
-          <Item
-            name="Mars"
-            category="chocolate"
-            image={mars}
-            cost={50}
-            stockRemaining={6}
-          />
-          <Item
-            name="Bueno"
-            category="chocolate"
-            image={bueno}
-            cost={50}
-            stockRemaining={1}
-          />
+          {stock.chocolate.map((item) => (
+            <Item {...item} key={item.name} />
+          ))}
         </List>
 
         <BlockTitle>
@@ -169,7 +185,6 @@ const App = () => {
         <List>
           <Item
             name="Mars"
-            category="chocolate"
             image={mars}
             cost={50}
             stockRemaining={1}
@@ -177,7 +192,6 @@ const App = () => {
           />
           <Item
             name="Bueno"
-            category="chocolate"
             image={bueno}
             cost={50}
             stockRemaining={10}
