@@ -130,30 +130,30 @@ const App = ({ stock = stockExample }) => {
   const [activeCategory, setActiveCategory] = useState(categoriesMock[0].id);
 
   useEffect(() => {
-    //TODO put this in a redux store
-    fetch(`${process.env.REACT_APP_API_URL}/users`).then((response) => {
-      response.json().then((response) => {
-        const data = response.data as any[];
+    (async () => {
+      //TODO put this in a redux store
+      const { data } = await fetch(
+        `${process.env.REACT_APP_API_URL}/users`,
+      ).then((r) => r.json());
 
-        let users = data
-          .map((user) => {
-            return {
-              name: user.name,
-              rank: user.rank,
-              number: user.number,
-            };
-          })
-          .sort((a: User, b: User) => {
-            if (!isNaN(Number(a.number)) && !isNaN(Number(b.number))) {
-              return Number(a.number) - Number(b.number);
-            }
+      let users = data
+        .map((user: User) => {
+          return {
+            name: user.name,
+            rank: user.rank,
+            number: user.number,
+          };
+        })
+        .sort((a: User, b: User) => {
+          if (!isNaN(Number(a.number)) && !isNaN(Number(b.number))) {
+            return Number(a.number) - Number(b.number);
+          }
 
-            return 0;
-          });
+          return 0;
+        });
 
-        setUsers(users);
-      });
-    });
+      setUsers(users);
+    })();
   }, []);
 
   return (
