@@ -26,6 +26,7 @@ import costaCaramelLatte from 'images/costa-caramel-latte.jpg';
 import mars from 'images/mars.jpg';
 
 import Item from 'components/Item';
+import Header from 'components/Header';
 
 import { User } from './types';
 
@@ -110,15 +111,7 @@ const App = ({ stock = stockExample }) => {
   return (
     <KonstaApp safeAreas theme={theme}>
       <Page className="pb-10">
-        <Navbar
-          title={process.env.REACT_APP_TITLE}
-          right={
-            <Link navbar className="space-x-2">
-              <FontAwesomeIcon icon={faCartShopping} />
-              <span>2</span>
-            </Link>
-          }
-        />
+        <Header />
 
         <BlockTitle>
           <span className="space-x-2">
