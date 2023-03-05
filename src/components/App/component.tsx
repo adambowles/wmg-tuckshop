@@ -27,9 +27,9 @@ import mars from 'images/mars.jpg';
 import Item from 'components/Item';
 import Header from 'components/Header';
 
-import { User } from './types';
+import { User } from 'components/App/types';
 
-import './style.css';
+import 'components/App/style.css';
 
 const stockExample = {
   favourites: [

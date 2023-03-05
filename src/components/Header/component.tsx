@@ -22,7 +22,7 @@ import bueno from 'images/bueno.jpg';
 import costaLatte from 'images/costa-latte.jpg';
 import mars from 'images/mars.jpg';
 
-import './style.css';
+import 'components/Header/style.css';
 
 const basketMock = [
   {

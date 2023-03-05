@@ -6,7 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { decrement, increment, selectCount } from 'store/counter/counterSlice';
 
-import './style.css';
+import 'components/Item/style.css';
 
 function Item({
   cost = 100,

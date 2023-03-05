@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Item from './component';
+
+import Item from 'components/Item/component';
 
 import bueno from 'images/bueno.jpg';
 

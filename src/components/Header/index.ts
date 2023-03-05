@@ -1,2 +1,2 @@
-import Item from './component';
+import Item from 'components/Header/component';
 export default Item;
