@@ -7,8 +7,6 @@ import {
   Button,
   List,
   ListItem,
-  Segmented,
-  SegmentedButton,
   Preloader,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -163,7 +161,7 @@ const App = ({ stock = stockExample }) => {
       <Page className="pb-safe">
         <Header />
 
-        {/* <BlockTitle>
+        <BlockTitle>
           <span className="space-x-2">
             <FontAwesomeIcon icon={faPerson} />
             <span>Users</span>
@@ -179,7 +177,7 @@ const App = ({ stock = stockExample }) => {
           {users.map((user) => (
             <ListItem link title={user.name} key={user.number} />
           ))}
-        </List> */}
+        </List>
 
         <Block className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10">
           {categoriesMock.map((category) => (
