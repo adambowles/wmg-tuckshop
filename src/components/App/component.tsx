@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react';
 import {
   App as KonstaApp,
   Page,
-  Navbar,
+  Block,
   BlockTitle,
+  Button,
   List,
   ListItem,
-  Link,
+  Segmented,
+  SegmentedButton,
+  Preloader,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCartShopping,
   faStar,
   faCoffee,
   faCookieBite,
   faPerson,
-  faCircleNotch,
 } from '@fortawesome/free-solid-svg-icons';
 
 import platformDetector from 'utils/platform-detector';
@@ -77,9 +78,58 @@ const stockExample = {
   ],
 };
 
+const categoriesMock = [
+  {
+    id: 'favourites',
+    icon: faStar,
+    name: 'Favourites',
+  },
+  {
+    id: 'coffee',
+    icon: faCoffee,
+    name: 'Coffee',
+  },
+  {
+    id: 'chocolate',
+    icon: faStar,
+    name: 'Chocolate',
+  },
+  {
+    id: 'drinks',
+    icon: faStar,
+    name: 'Drinks',
+  },
+  {
+    id: 'crisps',
+    icon: faStar,
+    name: 'Crisps',
+  },
+  {
+    id: 'pot-noodle',
+    icon: faStar,
+    name: 'Pot Noodle',
+  },
+  {
+    id: 'sweets',
+    icon: faStar,
+    name: 'Sweets',
+  },
+  {
+    id: 'bars-and-biscuits',
+    icon: faStar,
+    name: 'Biscuits',
+  },
+  {
+    id: 'porridge',
+    icon: faStar,
+    name: 'Porridge',
+  },
+];
+
 const App = ({ stock = stockExample }) => {
   const [users, setUsers] = useState([] as User[]);
   const [theme] = useState(platformDetector());
+  const [activeCategory, setActiveCategory] = useState(categoriesMock[0].id);
 
   useEffect(() => {
     //TODO put this in a redux store
@@ -110,10 +160,10 @@ const App = ({ stock = stockExample }) => {
 
   return (
     <KonstaApp safeAreas theme={theme}>
-      <Page className="pb-10">
+      <Page className="pb-safe">
         <Header />
 
-        <BlockTitle>
+        {/* <BlockTitle>
           <span className="space-x-2">
             <FontAwesomeIcon icon={faPerson} />
             <span>Users</span>
@@ -122,75 +172,77 @@ const App = ({ stock = stockExample }) => {
 
         <List>
           {!users.length && (
-            <ListItem text={<FontAwesomeIcon icon={faCircleNotch} spin />} />
+            <Block className="text-center">
+              <Preloader />
+            </Block>
           )}
           {users.map((user) => (
             <ListItem link title={user.name} key={user.number} />
           ))}
-        </List>
+        </List> */}
 
-        <BlockTitle>
-          <span className="space-x-2">
-            <FontAwesomeIcon icon={faStar} />
-            <span>Favourites</span>
-          </span>
-        </BlockTitle>
-
-        <List>
-          {stock.favourites.map((item) => (
-            <Item {...item} key={item.name} />
+        <Block className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10">
+          {categoriesMock.map((category) => (
+            <Button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              outline={activeCategory !== category.id}
+            >
+              {category.name}
+            </Button>
           ))}
-        </List>
+        </Block>
 
-        <BlockTitle>
-          <span className="space-x-2">
-            <FontAwesomeIcon icon={faCoffee} />
-            <span>Coffee</span>
-          </span>
-        </BlockTitle>
+        {activeCategory === 'favourites' && (
+          <>
+            <BlockTitle>
+              <span className="space-x-2">
+                <FontAwesomeIcon icon={faStar} />
+                <span>Favourites</span>
+              </span>
+            </BlockTitle>
 
-        <List>
-          {stock.coffee.map((item) => (
-            <Item {...item} key={item.name} />
-          ))}
-        </List>
+            <List>
+              {stock.favourites.map((item) => (
+                <Item {...item} key={item.name} />
+              ))}
+            </List>
+          </>
+        )}
 
-        <BlockTitle>
-          <span className="space-x-2">
-            <FontAwesomeIcon icon={faCookieBite} />
-            <span>Chocolate</span>
-          </span>
-        </BlockTitle>
+        {activeCategory === 'coffee' && (
+          <>
+            <BlockTitle>
+              <span className="space-x-2">
+                <FontAwesomeIcon icon={faCoffee} />
+                <span>Coffee</span>
+              </span>
+            </BlockTitle>
 
-        <List>
-          {stock.chocolate.map((item) => (
-            <Item {...item} key={item.name} />
-          ))}
-        </List>
+            <List>
+              {stock.coffee.map((item) => (
+                <Item {...item} key={item.name} />
+              ))}
+            </List>
+          </>
+        )}
 
-        <BlockTitle>
-          <span className="space-x-2">
-            <FontAwesomeIcon icon={faCartShopping} />
-            <span>Cart</span>
-          </span>
-        </BlockTitle>
+        {activeCategory === 'chocolate' && (
+          <>
+            <BlockTitle>
+              <span className="space-x-2">
+                <FontAwesomeIcon icon={faCookieBite} />
+                <span>Chocolate</span>
+              </span>
+            </BlockTitle>
 
-        <List>
-          <Item
-            name="Mars"
-            image={mars}
-            cost={50}
-            stockRemaining={1}
-            inBasket
-          />
-          <Item
-            name="Bueno"
-            image={bueno}
-            cost={50}
-            stockRemaining={10}
-            inBasket
-          />
-        </List>
+            <List>
+              {stock.chocolate.map((item) => (
+                <Item {...item} key={item.name} />
+              ))}
+            </List>
+          </>
+        )}
       </Page>
     </KonstaApp>
   );
