@@ -138,7 +138,7 @@ const App = ({ stock = stockExample }) => {
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, []);
+  }, [dispatch]);
 
   return (
     <KonstaApp safeAreas theme={theme}>
