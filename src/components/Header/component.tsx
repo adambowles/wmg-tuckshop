@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Block,
   Button,
@@ -6,11 +6,13 @@ import {
   DialogButton,
   Link,
   List,
+  ListItem,
   Navbar,
+  Popover,
   Popup,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector } from 'store/hooks';
 import { selectCount } from 'store/counter/counterSlice';
@@ -49,22 +51,52 @@ function Header() {
 
   const [basketOpened, setBasketOpened] = useState(false);
   const [checkoutOpened, setCheckoutOpened] = useState(false);
+  const [popoverOpened, setPopoverOpened] = useState(false);
+  const popoverTargetRef = useRef(null);
+
+  // What type is this
+  const openPopover = (targetRef: any) => {
+    popoverTargetRef.current = targetRef;
+    setPopoverOpened(true);
+  };
 
   return (
     <>
       <Navbar
         title={process.env.REACT_APP_TITLE}
         right={
-          <Link
-            navbar
-            className="space-x-2"
-            onClick={() => setBasketOpened(true)}
-          >
-            <FontAwesomeIcon icon={faCartShopping} />
-            <span>{basketMock.length}</span>
+          <Link navbar className="bars" onClick={() => openPopover('.bars')}>
+            <FontAwesomeIcon icon={faBars} size="xl" />
           </Link>
         }
       />
+
+      <Popover
+        opened={popoverOpened}
+        target={popoverTargetRef.current}
+        onBackdropClick={() => setPopoverOpened(false)}
+      >
+        <List nested>
+          <ListItem
+            title="Basket (3)"
+            link
+            onClick={() => {
+              setPopoverOpened(false);
+              setBasketOpened(true);
+            }}
+          />
+          <ListItem
+            title="Brew fund"
+            link
+            onClick={() => setPopoverOpened(false)}
+          />
+          <ListItem
+            title="Log out"
+            link
+            onClick={() => setPopoverOpened(false)}
+          />
+        </List>
+      </Popover>
 
       <Popup
         className="pb-safe w-screen"
