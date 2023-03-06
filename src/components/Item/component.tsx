@@ -1,7 +1,5 @@
 import React from 'react';
-import { Button, Card, Chip, ListItem, Stepper } from 'konsta/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { Button, Card, ListItem, Stepper } from 'konsta/react';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { decrement, increment, selectCount } from 'store/counter/counterSlice';
