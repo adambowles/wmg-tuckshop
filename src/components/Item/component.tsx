@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, Button, ListItem, Stepper } from 'konsta/react';
+import { Button, Card, Chip, ListItem, Stepper } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { decrement, increment, selectCount } from 'store/counter/counterSlice';
@@ -56,18 +56,19 @@ function Item({
               <div className="text-gray-500">
                 {`${stockRemaining} left in stock`}
               </div>
-              <Button roundedMaterial inline large raised>
-                <FontAwesomeIcon icon={faPlus} size="2xl" />
-              </Button>
             </div>
           }
         >
           <div
-            className="ios:-m-4 material:-my-4 h-48 flex items-end ios:font-bold bg-cover bg-center material:rounded-xl material:text-[22px]"
+            className="ios:-m-4 material:-my-4 p-3 h-48 flex items-end justify-end bg-cover bg-center material:rounded-xl text-[16px] text-blue"
             style={{
               backgroundImage: `url(${image})`,
             }}
-          />
+          >
+            <Button inline largeIos roundedMaterial raised>
+              Add
+            </Button>
+          </div>
         </Card>
       );
     }
@@ -79,17 +80,11 @@ function Item({
         subtitle={formatCost(displayCost)}
         text={`${stockRemaining} left in stock`}
         after={
-          inBasket ? (
-            <Stepper
-              value={quantitySelected}
-              onPlus={incrementQuantitySelected}
-              onMinus={decrementQuantitySelected}
-            />
-          ) : (
-            <Button touchRipple={false}>
-              <FontAwesomeIcon icon={faPlus} size="xl" />
-            </Button>
-          )
+          <Stepper
+            value={quantitySelected}
+            onPlus={incrementQuantitySelected}
+            onMinus={decrementQuantitySelected}
+          />
         }
         media={
           <img
