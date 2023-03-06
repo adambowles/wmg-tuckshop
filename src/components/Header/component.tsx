@@ -7,8 +7,7 @@ import {
   Link,
   List,
   Navbar,
-  Sheet,
-  Toolbar,
+  Popup,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -67,19 +66,19 @@ function Header() {
         }
       />
 
-      <Sheet
+      <Popup
         className="pb-safe w-screen"
         opened={basketOpened}
         onBackdropClick={() => setBasketOpened(false)}
       >
-        <Toolbar top>
-          <div className="left" />
-          <div className="right">
-            <Link toolbar onClick={() => setBasketOpened(false)}>
+        <Navbar
+          title="Basket"
+          right={
+            <Link navbar onClick={() => setBasketOpened(false)}>
               Close
             </Link>
-          </div>
-        </Toolbar>
+          }
+        ></Navbar>
         <Block>
           <List>
             {basketMock.map((item) => (
@@ -88,7 +87,7 @@ function Header() {
           </List>
           <Button onClick={() => setCheckoutOpened(true)}>Check out</Button>
         </Block>
-      </Sheet>
+      </Popup>
 
       <Dialog
         opened={checkoutOpened}
