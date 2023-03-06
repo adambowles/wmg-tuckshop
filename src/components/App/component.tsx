@@ -5,8 +5,6 @@ import {
   Block,
   BlockTitle,
   Button,
-  Card,
-  Link,
   List,
   ListItem,
   Preloader,
@@ -17,8 +15,6 @@ import {
   faCoffee,
   faCookieBite,
   faPerson,
-  faPlus,
-  faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
@@ -38,7 +34,6 @@ import Item from 'components/Item';
 import Header from 'components/Header';
 
 import 'components/App/style.css';
-import formatCost from 'utils/format-cost';
 
 const stockExample = {
   favourites: [
