@@ -76,7 +76,7 @@ function Header() {
           <div className="left" />
           <div className="right">
             <Link toolbar onClick={() => setBasketOpened(false)}>
-              Done
+              Close
             </Link>
           </div>
         </Toolbar>

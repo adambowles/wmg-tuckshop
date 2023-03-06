@@ -17,6 +17,12 @@ import {
   faPerson,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { useAppSelector, useAppDispatch } from 'store/hooks';
+import {
+  fetchUsers,
+  selectUsers,
+  selectUserFetchingStatus,
+} from 'store/users/userSlice';
 import platformDetector from 'utils/platform-detector';
 import fanta from 'images/fanta.jpg';
 import bueno from 'images/bueno.jpg';
@@ -26,8 +32,6 @@ import mars from 'images/mars.jpg';
 
 import Item from 'components/Item';
 import Header from 'components/Header';
-
-import { User } from 'components/App/types';
 
 import 'components/App/style.css';
 
@@ -125,35 +129,15 @@ const categoriesMock = [
 ];
 
 const App = ({ stock = stockExample }) => {
-  const [users, setUsers] = useState([] as User[]);
+  const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
+  const usersFetchingStatus = useAppSelector(selectUserFetchingStatus);
+
   const [theme] = useState(platformDetector());
   const [activeCategory, setActiveCategory] = useState(categoriesMock[0].id);
 
   useEffect(() => {
-    (async () => {
-      //TODO put this in a redux store
-      const { data } = await fetch(
-        `${process.env.REACT_APP_API_URL}/users`,
-      ).then((r) => r.json());
-
-      let users = data
-        .map((user: User) => {
-          return {
-            name: user.name,
-            rank: user.rank,
-            number: user.number,
-          };
-        })
-        .sort((a: User, b: User) => {
-          if (!isNaN(Number(a.number)) && !isNaN(Number(b.number))) {
-            return Number(a.number) - Number(b.number);
-          }
-
-          return 0;
-        });
-
-      setUsers(users);
-    })();
+    dispatch(fetchUsers());
   }, []);
 
   return (
@@ -169,14 +153,18 @@ const App = ({ stock = stockExample }) => {
         </BlockTitle>
 
         <List>
-          {!users.length && (
+          {usersFetchingStatus === 'loading' && (
             <Block className="text-center">
               <Preloader />
             </Block>
           )}
-          {users.map((user) => (
-            <ListItem link title={user.name} key={user.number} />
-          ))}
+          {usersFetchingStatus === 'failed' && (
+            <ListItem title="Failed fetching user list" />
+          )}
+          {usersFetchingStatus === 'idle' &&
+            users.map((user) => (
+              <ListItem link title={user.name} key={user.number} />
+            ))}
         </List>
 
         <Block className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10">

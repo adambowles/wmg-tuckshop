@@ -1,10 +1,4 @@
 //TODO move to centralised types store
-export interface User {
-  name: string;
-  rank: string;
-  number: string;
-}
-
 export interface Item {
   name: string;
   image: string;
