@@ -4,15 +4,17 @@ import {
   Button,
   Dialog,
   DialogButton,
+  Fab,
   Link,
   List,
   ListItem,
   Navbar,
   Popover,
   Popup,
+  // useTheme,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector } from 'store/hooks';
 import { selectCount } from 'store/counter/counterSlice';
@@ -53,6 +55,8 @@ function Header() {
   const [checkoutOpened, setCheckoutOpened] = useState(false);
   const [popoverOpened, setPopoverOpened] = useState(false);
   const popoverTargetRef = useRef(null);
+
+  // const theme = useTheme();
 
   // What type is this
   const openPopover = (targetRef: any) => {
@@ -151,6 +155,11 @@ function Header() {
         )}{' '}
         to your debt
       </Dialog>
+      <Fab
+        className="fixed right-4-safe bottom-4-safe z-20"
+        onClick={() => setBasketOpened(true)}
+        text={<FontAwesomeIcon icon={faCartShopping} size="lg" />}
+      />
     </>
   );
 }
