@@ -22,7 +22,7 @@ import {
   fetchUsers,
   selectUsers,
   selectUserFetchingStatus,
-} from 'store/users/userSlice';
+} from 'store/users/usersSlice';
 import platformDetector from 'utils/platform-detector';
 import fanta from 'images/fanta.jpg';
 import bueno from 'images/bueno.jpg';
