@@ -117,7 +117,9 @@ function Header() {
               <Item {...item} key={item.name} inBasket />
             ))}
           </List>
-          <Button onClick={() => setCheckoutOpened(true)}>Check out</Button>
+          <Button onClick={() => setCheckoutOpened(true)} large>
+            Check out
+          </Button>
         </Block>
       </Popup>
 
@@ -139,7 +141,7 @@ function Header() {
           </>
         }
       >
-        Checking out will add £
+        Checking out will add{' '}
         {formatCost(
           Math.round(
             basketMock
