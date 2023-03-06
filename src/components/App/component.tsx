@@ -5,6 +5,8 @@ import {
   Block,
   BlockTitle,
   Button,
+  Card,
+  Link,
   List,
   ListItem,
   Preloader,
@@ -15,6 +17,8 @@ import {
   faCoffee,
   faCookieBite,
   faPerson,
+  faPlus,
+  faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
@@ -34,6 +38,7 @@ import Item from 'components/Item';
 import Header from 'components/Header';
 
 import 'components/App/style.css';
+import formatCost from 'utils/format-cost';
 
 const stockExample = {
   favourites: [
@@ -188,11 +193,11 @@ const App = ({ stock = stockExample }) => {
               </span>
             </BlockTitle>
 
-            <List>
+            <Block className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {stock.favourites.map((item) => (
                 <Item {...item} key={item.name} />
               ))}
-            </List>
+            </Block>
           </>
         )}
 
@@ -205,11 +210,11 @@ const App = ({ stock = stockExample }) => {
               </span>
             </BlockTitle>
 
-            <List>
+            <Block className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {stock.coffee.map((item) => (
                 <Item {...item} key={item.name} />
               ))}
-            </List>
+            </Block>
           </>
         )}
 
@@ -222,11 +227,11 @@ const App = ({ stock = stockExample }) => {
               </span>
             </BlockTitle>
 
-            <List>
+            <Block className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {stock.chocolate.map((item) => (
                 <Item {...item} key={item.name} />
               ))}
-            </List>
+            </Block>
           </>
         )}
       </Page>

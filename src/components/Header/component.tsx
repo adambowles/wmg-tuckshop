@@ -14,12 +14,12 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector } from 'store/hooks';
 import { selectCount } from 'store/counter/counterSlice';
-
-import Item from 'components/Item';
-
+import formatCost from 'utils/format-cost';
 import bueno from 'images/bueno.jpg';
 import costaLatte from 'images/costa-latte.jpg';
 import mars from 'images/mars.jpg';
+
+import Item from 'components/Item';
 
 import 'components/Header/style.css';
 
@@ -108,13 +108,13 @@ function Header() {
         }
       >
         Checking out will add £
-        {(
+        {formatCost(
           Math.round(
             basketMock
               .map((item) => item.cost * quantitySelected)
               .reduce((accumulator, current) => accumulator + current),
-          ) / 100
-        ).toFixed(2)}{' '}
+          ),
+        )}{' '}
         to your debt
       </Dialog>
     </>
