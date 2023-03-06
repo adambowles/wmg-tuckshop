@@ -53,7 +53,7 @@ function Item({
           }
           footer={
             <div className="flex justify-between items-center">
-              <div className="text-gray-500 mb-3">
+              <div className="text-gray-500">
                 {`${stockRemaining} left in stock`}
               </div>
               <Button roundedMaterial inline large raised>
@@ -63,7 +63,7 @@ function Item({
           }
         >
           <div
-            className="ios:-mx-4 ios:-mt-4 h-48 p-4 flex items-end ios:font-bold bg-cover bg-center material:rounded-xl material:text-[22px]"
+            className="ios:-m-4 material:-my-4 h-48 flex items-end ios:font-bold bg-cover bg-center material:rounded-xl material:text-[22px]"
             style={{
               backgroundImage: `url(${image})`,
             }}
