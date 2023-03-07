@@ -58,7 +58,7 @@ function Item({
           }
         >
           <div
-            className="ios:-m-4 material:-my-4 p-3 h-48 flex items-end justify-end bg-cover bg-center material:rounded-xl text-[16px] text-blue"
+            className="ios:-m-4 material:-my-4 p-3 h-32 flex items-end justify-end bg-cover bg-center material:rounded-xl text-[16px] text-blue"
             style={{
               backgroundImage: `url(${image})`,
             }}
