@@ -3,19 +3,20 @@ import {
   App as KonstaApp,
   Page,
   Block,
-  BlockTitle,
+  // BlockTitle,
   Button,
-  // List,
+  List,
+  ListInput,
   // ListItem,
   Preloader,
 } from 'konsta/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar,
-  faCoffee,
-  faCookieBite,
-  // faPerson,
-} from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//   faStar,
+//   faCoffee,
+//   faCookieBite,
+//   faPerson,
+// } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 // import {
@@ -49,6 +50,7 @@ const App = () => {
 
   const [theme] = useState(platformDetector());
   const [activeCategory, setActiveCategory] = useState('Favourites');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     // dispatch(fetchUsers());
@@ -98,32 +100,16 @@ const App = () => {
           ))}
         </Block>
 
-        {activeCategory === 'favourites' && (
-          <BlockTitle>
-            <span className="space-x-2">
-              <FontAwesomeIcon icon={faStar} />
-              <span>Favourites</span>
-            </span>
-          </BlockTitle>
-        )}
-
-        {activeCategory === 'coffee' && (
-          <BlockTitle>
-            <span className="space-x-2">
-              <FontAwesomeIcon icon={faCoffee} />
-              <span>Coffee</span>
-            </span>
-          </BlockTitle>
-        )}
-
-        {activeCategory === 'chocolate' && (
-          <BlockTitle>
-            <span className="space-x-2">
-              <FontAwesomeIcon icon={faCookieBite} />
-              <span>Chocolate</span>
-            </span>
-          </BlockTitle>
-        )}
+        <List strongIos insetIos>
+          <ListInput
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm((e.target as any).value);
+            }}
+          />
+        </List>
 
         {itemsFetchingStatus === 'loading' && (
           <Block className="text-center">
@@ -133,6 +119,9 @@ const App = () => {
         <Block className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {items
             .filter((item) => item.category.name === activeCategory)
+            .filter((item) =>
+              item.name.toLowerCase().includes(searchTerm.toLowerCase()),
+            )
             .map((item) => (
               <Item {...item} key={item.name} />
             ))}
