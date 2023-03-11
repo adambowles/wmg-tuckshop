@@ -189,7 +189,7 @@ const App = ({ stock = stockExample }) => {
               </span>
             </BlockTitle>
 
-            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
+            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {stock.favourites.map((item) => (
                 <Item {...item} key={item.name} />
               ))}
@@ -206,7 +206,7 @@ const App = ({ stock = stockExample }) => {
               </span>
             </BlockTitle>
 
-            <Block className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {stock.coffee.map((item) => (
                 <Item {...item} key={item.name} />
               ))}
@@ -223,7 +223,7 @@ const App = ({ stock = stockExample }) => {
               </span>
             </BlockTitle>
 
-            <Block className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {stock.chocolate.map((item) => (
                 <Item {...item} key={item.name} />
               ))}
