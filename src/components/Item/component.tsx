@@ -42,6 +42,7 @@ function Item({
     if (!inBasket) {
       return (
         <Card
+          className="m-0"
           outline
           header={
             <div className="flex justify-between items-center">

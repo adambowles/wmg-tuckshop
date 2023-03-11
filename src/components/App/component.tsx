@@ -130,7 +130,7 @@ const App = () => {
             <Preloader />
           </Block>
         )}
-        <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <Block className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {items
             .filter((item) => item.category.name === activeCategory)
             .map((item) => (
