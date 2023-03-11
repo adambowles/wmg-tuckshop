@@ -27,11 +27,15 @@ root.render(
 if (process.env.production) {
   serviceWorkerRegistration.register({
     onUpdate: (registration) => {
-      if (registration && registration.waiting) {
-        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      }
+      const confirm = window.confirm('New version available. Reload?');
 
-      window.location.reload();
+      if (confirm) {
+        if (registration && registration.waiting) {
+          registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+
+        window.location.reload();
+      }
     },
   });
 } else {
