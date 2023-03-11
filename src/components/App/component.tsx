@@ -5,8 +5,8 @@ import {
   Block,
   BlockTitle,
   Button,
-  List,
-  ListItem,
+  // List,
+  // ListItem,
   Preloader,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,15 +14,15 @@ import {
   faStar,
   faCoffee,
   faCookieBite,
-  faPerson,
+  // faPerson,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
-import {
-  fetchUsers,
-  selectUsers,
-  selectUserFetchingStatus,
-} from 'store/users/usersSlice';
+// import {
+//   fetchUsers,
+//   selectUsers,
+//   selectUserFetchingStatus,
+// } from 'store/users/usersSlice';
 import {
   fetchItems,
   selectItems,
@@ -38,8 +38,8 @@ import 'components/App/style.css';
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const users = useAppSelector(selectUsers);
-  const usersFetchingStatus = useAppSelector(selectUserFetchingStatus);
+  // const users = useAppSelector(selectUsers);
+  // const usersFetchingStatus = useAppSelector(selectUserFetchingStatus);
   const items = useAppSelector(selectItems);
   const itemsFetchingStatus = useAppSelector(selectItemFetchingStatus);
 
@@ -51,7 +51,7 @@ const App = () => {
   const [activeCategory, setActiveCategory] = useState('Favourites');
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    // dispatch(fetchUsers());
     dispatch(fetchItems());
   }, [dispatch]);
 
@@ -60,7 +60,7 @@ const App = () => {
       <Page className="pb-safe">
         <Header />
 
-        <BlockTitle>
+        {/* <BlockTitle>
           <span className="space-x-2">
             <FontAwesomeIcon icon={faPerson} />
             <span>Users</span>
@@ -84,7 +84,7 @@ const App = () => {
                 key={user.number}
               />
             ))}
-        </List>
+        </List> */}
 
         <Block className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10">
           {categories.map((category) => (
