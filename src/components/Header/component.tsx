@@ -164,6 +164,7 @@ function Header() {
         )}{' '}
         to your debt
       </Dialog>
+
       <Fab
         className="fixed right-4-safe bottom-4-safe z-20"
         onClick={() => setBasketOpened(true)}
