@@ -23,122 +23,36 @@ import {
   selectUsers,
   selectUserFetchingStatus,
 } from 'store/users/usersSlice';
+import {
+  fetchItems,
+  selectItems,
+  selectItemFetchingStatus,
+} from 'store/items/itemsSlice';
 
 import platformDetector from 'utils/platform-detector';
-import fanta from 'images/fanta.jpg';
-import bueno from 'images/bueno.jpg';
-import costaLatte from 'images/costa-latte.jpg';
-import costaCaramelLatte from 'images/costa-caramel-latte.jpg';
-import mars from 'images/mars.jpg';
 
 import Item from 'components/Item';
 import Header from 'components/Header';
 
 import 'components/App/style.css';
 
-const stockExample = {
-  favourites: [
-    {
-      name: 'Fanta',
-      image: fanta,
-      stockRemaining: 10,
-      cost: 100,
-    },
-    {
-      name: 'Bueno',
-      image: bueno,
-      stockRemaining: 10,
-      cost: 50,
-    },
-  ],
-  coffee: [
-    {
-      name: 'Costa Latte',
-      image: costaLatte,
-      stockRemaining: 20,
-      cost: 140,
-    },
-    {
-      name: 'Costa Caramel Latte',
-      image: costaCaramelLatte,
-      stockRemaining: 10,
-      cost: 140,
-    },
-  ],
-  chocolate: [
-    {
-      name: 'Mars',
-      image: mars,
-      stockRemaining: 30,
-      cost: 50,
-    },
-    {
-      name: 'Bueno',
-      image: bueno,
-      stockRemaining: 10,
-      cost: 50,
-    },
-  ],
-};
-
-const categoriesMock = [
-  {
-    id: 'favourites',
-    icon: faStar,
-    name: 'Favourites',
-  },
-  {
-    id: 'coffee',
-    icon: faCoffee,
-    name: 'Coffee',
-  },
-  {
-    id: 'chocolate',
-    icon: faStar,
-    name: 'Chocolate',
-  },
-  {
-    id: 'drinks',
-    icon: faStar,
-    name: 'Drinks',
-  },
-  {
-    id: 'crisps',
-    icon: faStar,
-    name: 'Crisps',
-  },
-  {
-    id: 'pot-noodle',
-    icon: faStar,
-    name: 'Pot Noodle',
-  },
-  {
-    id: 'sweets',
-    icon: faStar,
-    name: 'Sweets',
-  },
-  {
-    id: 'bars-and-biscuits',
-    icon: faStar,
-    name: 'Biscuits',
-  },
-  {
-    id: 'porridge',
-    icon: faStar,
-    name: 'Porridge',
-  },
-];
-
-const App = ({ stock = stockExample }) => {
+const App = () => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsers);
   const usersFetchingStatus = useAppSelector(selectUserFetchingStatus);
+  const items = useAppSelector(selectItems);
+  const itemsFetchingStatus = useAppSelector(selectItemFetchingStatus);
+
+  const categories = ['Favourites'].concat(
+    Array.from(new Set(items.map((item) => item.category.name))).sort(),
+  );
 
   const [theme] = useState(platformDetector());
-  const [activeCategory, setActiveCategory] = useState(categoriesMock[0].id);
+  const [activeCategory, setActiveCategory] = useState('Favourites');
 
   useEffect(() => {
     dispatch(fetchUsers());
+    dispatch(fetchItems());
   }, [dispatch]);
 
   return (
@@ -173,67 +87,56 @@ const App = ({ stock = stockExample }) => {
         </List>
 
         <Block className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10">
-          {categoriesMock.map((category) => (
+          {categories.map((category) => (
             <Button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              outline={activeCategory !== category.id}
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              outline={activeCategory !== category}
             >
-              {category.name}
+              {category}
             </Button>
           ))}
         </Block>
 
         {activeCategory === 'favourites' && (
-          <>
-            <BlockTitle>
-              <span className="space-x-2">
-                <FontAwesomeIcon icon={faStar} />
-                <span>Favourites</span>
-              </span>
-            </BlockTitle>
-
-            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-              {stock.favourites.map((item) => (
-                <Item {...item} key={item.name} />
-              ))}
-            </Block>
-          </>
+          <BlockTitle>
+            <span className="space-x-2">
+              <FontAwesomeIcon icon={faStar} />
+              <span>Favourites</span>
+            </span>
+          </BlockTitle>
         )}
 
         {activeCategory === 'coffee' && (
-          <>
-            <BlockTitle>
-              <span className="space-x-2">
-                <FontAwesomeIcon icon={faCoffee} />
-                <span>Coffee</span>
-              </span>
-            </BlockTitle>
-
-            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-              {stock.coffee.map((item) => (
-                <Item {...item} key={item.name} />
-              ))}
-            </Block>
-          </>
+          <BlockTitle>
+            <span className="space-x-2">
+              <FontAwesomeIcon icon={faCoffee} />
+              <span>Coffee</span>
+            </span>
+          </BlockTitle>
         )}
 
         {activeCategory === 'chocolate' && (
-          <>
-            <BlockTitle>
-              <span className="space-x-2">
-                <FontAwesomeIcon icon={faCookieBite} />
-                <span>Chocolate</span>
-              </span>
-            </BlockTitle>
-
-            <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-              {stock.chocolate.map((item) => (
-                <Item {...item} key={item.name} />
-              ))}
-            </Block>
-          </>
+          <BlockTitle>
+            <span className="space-x-2">
+              <FontAwesomeIcon icon={faCookieBite} />
+              <span>Chocolate</span>
+            </span>
+          </BlockTitle>
         )}
+
+        {itemsFetchingStatus === 'loading' && (
+          <Block className="text-center">
+            <Preloader />
+          </Block>
+        )}
+        <Block className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          {items
+            .filter((item) => item.category.name === activeCategory)
+            .map((item) => (
+              <Item {...item} key={item.name} />
+            ))}
+        </Block>
       </Page>
     </KonstaApp>
   );

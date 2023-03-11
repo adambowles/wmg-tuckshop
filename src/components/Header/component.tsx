@@ -11,17 +11,13 @@ import {
   Navbar,
   Popover,
   Popup,
-  // useTheme,
 } from 'konsta/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppSelector } from 'store/hooks';
 import { selectCount } from 'store/counter/counterSlice';
-import formatCost from 'utils/format-cost';
-import bueno from 'images/bueno.jpg';
-import costaLatte from 'images/costa-latte.jpg';
-import mars from 'images/mars.jpg';
+import formatPrice from 'utils/format-price';
 
 import Item from 'components/Item';
 
@@ -29,22 +25,37 @@ import 'components/Header/style.css';
 
 const basketMock = [
   {
+    _id: 'bueno',
     name: 'Bueno',
-    image: bueno,
-    stockRemaining: 10,
-    cost: 50,
+    category: {
+      id: 'chocolates',
+      name: 'Chocolates',
+    },
+    price: 50, // in pence
+    stockRemaining: 15,
+    imageURL: 'images/bueno.jpg',
   },
   {
-    name: 'Costa Latte',
-    image: costaLatte,
-    stockRemaining: 10,
-    cost: 140,
+    _id: 'fanta',
+    name: 'Fanta',
+    category: {
+      id: 'drinks',
+      name: 'Drinks',
+    },
+    price: 50, // in pence
+    stockRemaining: 15,
+    imageURL: 'images/fanta.jpg',
   },
   {
-    name: 'Mars',
-    image: mars,
-    stockRemaining: 30,
-    cost: 50,
+    _id: 'yorkie',
+    name: 'Yorkie',
+    category: {
+      id: 'chocolates',
+      name: 'Chocolates',
+    },
+    price: 60, // in pence
+    stockRemaining: 15,
+    imageURL: 'images/yorkie.jpg',
   },
 ];
 
@@ -56,9 +67,7 @@ function Header() {
   const [popoverOpened, setPopoverOpened] = useState(false);
   const popoverTargetRef = useRef(null);
 
-  // const theme = useTheme();
-
-  // What type is this
+  // TODO What type is this
   const openPopover = (targetRef: any) => {
     popoverTargetRef.current = targetRef;
     setPopoverOpened(true);
@@ -118,7 +127,7 @@ function Header() {
         <Block>
           <List>
             {basketMock.map((item) => (
-              <Item {...item} key={item.name} inBasket />
+              <Item {...item} key={item._id} inBasket />
             ))}
           </List>
           <Button onClick={() => setCheckoutOpened(true)} large>
@@ -146,10 +155,10 @@ function Header() {
         }
       >
         Checking out will add{' '}
-        {formatCost(
+        {formatPrice(
           Math.round(
             basketMock
-              .map((item) => item.cost * quantitySelected)
+              .map((item) => item.price * quantitySelected)
               .reduce((accumulator, current) => accumulator + current),
           ),
         )}{' '}

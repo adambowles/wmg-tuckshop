@@ -3,16 +3,16 @@ import { Button, Card, ListItem, Stepper } from 'konsta/react';
 
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { decrement, increment, selectCount } from 'store/counter/counterSlice';
-import formatCost from 'utils/format-cost';
+import formatPrice from 'utils/format-price';
 
 import 'components/Item/style.css';
 
 function Item({
-  cost = 100,
+  price = 100,
+  imageURL = '',
   inBasket = false,
-  stockRemaining = 1,
-  image = '',
   name = '',
+  stockRemaining = 1,
 }) {
   const quantitySelected = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
@@ -32,11 +32,11 @@ function Item({
   };
 
   if (stockRemaining) {
-    let displayCost: number;
+    let displayPrice: number;
     if (inBasket) {
-      displayCost = cost * quantitySelected;
+      displayPrice = price * quantitySelected;
     } else {
-      displayCost = cost;
+      displayPrice = price;
     }
 
     if (!inBasket) {
@@ -46,7 +46,7 @@ function Item({
           header={
             <div className="flex justify-between items-center">
               <div>{name}</div>
-              <div>{formatCost(cost)}</div>
+              <div>{formatPrice(displayPrice)}</div>
             </div>
           }
           footer={
@@ -58,9 +58,9 @@ function Item({
           }
         >
           <div
-            className="ios:-m-4 material:-my-4 p-3 h-32 flex items-end justify-end bg-cover bg-center material:rounded-xl text-[16px] text-blue"
+            className="ios:-m-4 material:-my-4 p-3 h-48 flex items-end justify-end bg-white bg-center bg-no-repeat bg-contain material:rounded-xl text-[16px] text-blue"
             style={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${process.env.REACT_APP_API_URL}/${imageURL})`,
             }}
           >
             <Button inline largeIos roundedMaterial raised>
@@ -75,7 +75,7 @@ function Item({
       <ListItem
         chevron={false}
         title={name}
-        subtitle={formatCost(displayCost)}
+        subtitle={formatPrice(displayPrice)}
         text={`${stockRemaining} left in stock`}
         after={
           <Stepper
@@ -87,7 +87,7 @@ function Item({
         media={
           <img
             className="ios:rounded-lg material:rounded-lg"
-            src={image}
+            src={`${process.env.REACT_APP_API_URL}/${imageURL}`}
             width="64"
             alt={name}
           />

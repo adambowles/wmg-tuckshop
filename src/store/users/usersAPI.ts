@@ -10,6 +10,7 @@ export function fetchUsersFromAPI() {
           let users = data
             .map((user) => {
               return {
+                _id: user._id,
                 name: user.name,
                 rank: user.rank,
                 number: user.number,
