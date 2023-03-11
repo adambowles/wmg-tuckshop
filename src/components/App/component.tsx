@@ -164,7 +164,11 @@ const App = ({ stock = stockExample }) => {
           )}
           {usersFetchingStatus === 'idle' &&
             users.map((user) => (
-              <ListItem link title={user.name} key={user.number} />
+              <ListItem
+                link
+                title={`${user.rank} ${user.name}`}
+                key={user.number}
+              />
             ))}
         </List>
 
